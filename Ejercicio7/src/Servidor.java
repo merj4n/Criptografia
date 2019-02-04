@@ -6,6 +6,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.KeyStore;
 
+// Para generear el pool de certificados RSA para la comunicacion SSL.
+// keytool -genkey -keyalg RSA -alias serverKey -keystore KeyStore.jks -storepass servpass
+
+//-keytool está en el directorio bin de donde tengamos instalado java.
+//-Con la opción -genkey le estamos diciendo que genere un certificado.
+//-keyalg RSA le indicamos que lo queremos encriptado con el algorítmo RSA
+//-alias serverKey. El certificado se meterá en un fichero de almacén de certificados que podrá contener varios certificados.
+// Este alias es el nombre con el que luego podremos identificar este certificado concreto dentro del almacén. Podemos poner cualquier nombre que nos de una pista de qué es ese certificado.
+//-keystore serverKey.jks. Este es el fichero que hará de almacén de certificados. Si no existe se crea, si ya existe se añade el certificado con el alias que se haya indicado.
+//-storepass servpass. El almacén está protegido con contraseña, para acceder a él necesitamos la contraseña.
+// Si el almacén no existe, se crea usando esta contraseña, por lo que deberemos recordarla. Si ya existe, debemos proporcionar la contraseña que tuviera ese almacén.
+
+
 public class Servidor {
     public static void main(String[] args) {
         String cadena;
